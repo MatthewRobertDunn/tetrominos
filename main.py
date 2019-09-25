@@ -4,6 +4,8 @@ import renderer
 import time
 import gameloop
 import pygame
+import numpy as np
+
 pygame.init()
 
 screen_size = (800, 600)

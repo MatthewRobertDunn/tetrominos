@@ -14,7 +14,9 @@ class PyGameRenderer:
 
     def draw_score(self):
         font = pygame.font.SysFont("monospace", 50)
-        text = font.render(f'Super Tetrominos. Score {self.player.score} ', True, (255, 255, 255))
+        text = font.render(
+            f'Super Tetrominos. Game {"Over" if self.player.game_over else "Active"}. Score: {self.player.score}'\
+            , True, (255, 255, 255))
         self.screen.blit(text, (0, 0))
 
     def draw_tiles(self):

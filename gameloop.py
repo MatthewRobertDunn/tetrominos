@@ -11,13 +11,15 @@ def start_game():
     keys = controls.Controls()
     p1 = player.Player(game, keys)
     screen = renderer.PyGameRenderer(game, p1, 800, 600)
-
+    clock = pygame.time.Clock()
+    old_keys = keys.snapshot()
     while True:
-        pygame.time.delay(100)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 break
-        p1.tick()
+        ticks = clock.tick(60)
+        p1.tick(ticks, keys, old_keys)
+        old_keys = keys.snapshot()
         screen.draw_tiles()
         screen.draw_score()
         pygame.display.flip()

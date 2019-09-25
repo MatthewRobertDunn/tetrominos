@@ -10,13 +10,33 @@ class Tetromino:
 
     def rotate_counter_clockwise(self):
         self._rotate_counter_clockwise()
-        if self.world.collides(self):
+        collides = self.world.collides(self)
+        if collides == "S":
+            collides = self._wall_kick()
+        if collides:
             self._rotate_clockwise()
 
     def rotate_clockwise(self):
         self._rotate_clockwise()
-        if self.world.collides(self):
+        collides = self.world.collides(self)
+        if collides == "S":
+            collides = self._wall_kick()
+        if collides:
             self._rotate_counter_clockwise()
+
+    def _wall_kick(self, depth=1):
+        if depth > self.pattern_size // 2:
+            return True  # collides
+
+        if not self.world.collides(self, [0, depth]):
+            self.position[1] += depth
+            return False
+
+        if not self.world.collides(self, [0, -depth]):
+            self.position[1] -= depth
+            return False
+
+        return self._wall_kick(depth + 1)
 
     def _rotate_counter_clockwise(self):
         self.pattern = list(zip(*self.pattern))[::-1]
