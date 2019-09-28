@@ -14,6 +14,8 @@ class Player:
         self.move_left_held = 0
         self.move_right_held = 0
         self.advance_held = 0
+        self.move_speed = 60
+        self.last_move = 0
 
     def tick(self, ticks, controls, old_controls):
         if self.game_over:
@@ -23,23 +25,26 @@ class Player:
         self.game.clear_piece(tetromino)
 
         if controls.advance:
-            if self.advance_held == 0 or self.advance_held > self.repeat_delay:
+            if self.advance_held == 0:
                 tetromino.advance()
             self.advance_held += ticks
+            self._move_piece(self.advance_held,ticks,tetromino.advance)
         else:
             self.advance_held = 0
 
         if controls.move_left:
-            if self.move_left_held == 0 or self.move_left_held > self.repeat_delay:
+            if self.move_left_held == 0:
                 tetromino.move_left()
             self.move_left_held += ticks
+            self._move_piece(self.move_left_held,ticks,tetromino.move_left)
         else:
             self.move_left_held = 0
 
         if controls.move_right:
-            if self.move_right_held == 0 or self.move_right_held > self.repeat_delay:
+            if self.move_right_held == 0:
                 tetromino.move_right()
             self.move_right_held += ticks
+            self._move_piece(self.move_right_held,ticks,tetromino.move_right)
         else:
             self.move_right_held = 0
 
@@ -60,6 +65,14 @@ class Player:
                 self.game_over = True
 
         return self.tetromino
+
+    # moves a piece while limiting max speed
+    def _move_piece(self, held, ticks, move_func):
+        if held > self.repeat_delay and self.last_move > self.move_speed:
+            move_func()
+            self.last_move = 0
+        else:
+            self.last_move += ticks
 
     # spawns a new piece into the world
     def _get_new_tetromino(self):
