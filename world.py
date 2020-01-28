@@ -35,7 +35,13 @@ class World:
         for x in range(piece.pattern_size):
             for y in range(piece.pattern_size):
                 if(piece.pattern[x][y] == 1):
-                    cell = self.grid[coord[0] + x][coord[1] + y]
+                    gridx = coord[0] + x
+                    gridy = coord[1] + y
+                    if gridx > len(self.grid) - 1:
+                        return "S"
+                    if gridy > len(self.grid[0]) - 1:
+                        return "S"
+                    cell = self.grid[gridx][gridy]
                     if cell is not None and cell != piece:
                         return cell
         return None

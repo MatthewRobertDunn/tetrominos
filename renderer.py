@@ -13,7 +13,7 @@ class PyGameRenderer:
         self.grid_offset = [width / 2 - 100, 128]
 
     def draw_score(self):
-        font = pygame.font.SysFont("monospace", 50)
+        font = pygame.font.SysFont("monospace", 20)
         text = font.render(
             f'Super Tetrominos. Game {"Over" if self.player.game_over else "Active"}. Score: {self.player.score}'\
             , True, (255, 255, 255))
@@ -41,4 +41,3 @@ class PyGameRenderer:
         else:
             color = cell.color
         pygame.draw.rect(self.screen, color, (screenX, screenY, self.tile_size, self.tile_size), 3)
-

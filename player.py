@@ -4,9 +4,8 @@ import random
 
 class Player:
 
-    def __init__(self, game, controls):
+    def __init__(self, game):
         self.game = game
-        self.controls = controls
         self.game_over = False
         self.tetromino = None
         self.score = 0
@@ -28,7 +27,7 @@ class Player:
             if self.advance_held == 0:
                 tetromino.advance()
             self.advance_held += ticks
-            self._move_piece(self.advance_held, ticks, tetromino.advance)
+            self._move_piece(self.advance_held,ticks,tetromino.advance)
         else:
             self.advance_held = 0
 
@@ -36,7 +35,7 @@ class Player:
             if self.move_left_held == 0:
                 tetromino.move_left()
             self.move_left_held += ticks
-            self._move_piece(self.move_left_held, ticks, tetromino.move_left)
+            self._move_piece(self.move_left_held,ticks,tetromino.move_left)
         else:
             self.move_left_held = 0
 
@@ -44,7 +43,7 @@ class Player:
             if self.move_right_held == 0:
                 tetromino.move_right()
             self.move_right_held += ticks
-            self._move_piece(self.move_right_held, ticks, tetromino.move_right)
+            self._move_piece(self.move_right_held,ticks,tetromino.move_right)
         else:
             self.move_right_held = 0
 
