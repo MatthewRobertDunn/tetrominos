@@ -1,22 +1,27 @@
-import menu_player
+import constants
 import pygame
+import os
+from . import menu_player
+
 
 class MenuRenderer:
     def __init__(self, player):
         self.player = player
         self.screen = pygame.display.get_surface()
-        self.font =  pygame.font.SysFont("monospace", 20)
+        self.font =  pygame.font.Font(os.path.join(constants.FONT_DIR, '8-Bit Madness.ttf'),70)
 
     def draw_menu(self):
-        height = 20
+        text = self.render_text(self.player.Text, True)
+        self.screen.blit(text, (50, 0))
+
+        height = 100
         for item in self.player.menu_items:
             text = self.render_text(item.Text, item.Selected)
-            self.screen.blit(text, (0, height))
-            height += 10
-
+            self.screen.blit(text, (50, height))
+            height += self.screen.get_height() / 10.0
 
     def render_text(self, text, selected):
         color = (127, 127, 127)
         if selected:
             color = (255, 255, 255)
-        return self.font.render(text, True, color)
+        return self.font.render(text, False, color)

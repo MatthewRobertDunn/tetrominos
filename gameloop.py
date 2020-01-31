@@ -10,8 +10,8 @@ def start_game():
     pygame.init()
     pygame.display.set_mode((800, 600))
     screen = tetris_screen.TetrisScreen()
-    menu = menu.main_screen.MainScreen()
-    start_screen(menu)
+    menu_screen = menu.main_screen.MainScreen()
+    start_screen(menu_screen)
 
 
 def start_screen(screen):

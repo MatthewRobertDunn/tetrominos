@@ -1,5 +1,5 @@
-import menu_player
-import menu_renderer
+from . import menu_player
+from . import menu_renderer
 
 class MainScreen:
     def __init__(self):
@@ -10,5 +10,4 @@ class MainScreen:
         self.p1.tick(ticks, controls, old_controls)
 
     def draw(self):
-        self.render.draw_tiles()
-        self.render.draw_score()
+        self.render.draw_menu()
