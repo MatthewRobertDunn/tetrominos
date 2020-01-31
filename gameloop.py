@@ -6,6 +6,8 @@ import pygame
 import tetris_screen
 
 def start_game():
+    pygame.init()
+    pygame.display.set_mode((800, 600))
     screen = tetris_screen.TetrisScreen()
     start_screen(screen)
 

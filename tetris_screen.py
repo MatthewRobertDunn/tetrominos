@@ -6,7 +6,7 @@ class TetrisScreen:
     def __init__(self):
            self.game = world.World(10, 20)
            self.p1 = player.Player(self.game)
-           self.render = renderer.PyGameRenderer(self.game, self.p1, 800, 600)
+           self.render = renderer.PyGameRenderer(self.game, self.p1)
  
     def tick(self, ticks, controls, old_controls):
         self.p1.tick(ticks,controls,old_controls)

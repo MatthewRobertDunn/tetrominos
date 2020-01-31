@@ -4,13 +4,12 @@ import world
 
 
 class PyGameRenderer:
-    def __init__(self, game, player, width, height):
+    def __init__(self, game, player):
+        self.screen =  pygame.display.get_surface()
         self.game = game
         self.player = player
-        pygame.init()
-        self.screen = pygame.display.set_mode((width, height))
         self.tile_size = 16
-        self.grid_offset = [width / 2 - 100, 128]
+        self.grid_offset = [self.screen.get_width() / 2 - 100, 128]
 
     def draw_score(self):
         font = pygame.font.SysFont("monospace", 20)
