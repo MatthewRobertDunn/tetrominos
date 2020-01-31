@@ -8,6 +8,7 @@ import menu.main_screen
 
 def start_game():
     pygame.init()
+    pygame.mixer.init()
     pygame.display.set_mode((800, 600))
     screen = tetris_screen.TetrisScreen()
     menu_screen = menu.main_screen.MainScreen()
