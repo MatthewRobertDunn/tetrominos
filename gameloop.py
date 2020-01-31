@@ -4,32 +4,14 @@ import player
 import controls
 import pygame
 import tetris_screen
+import menu.main_screen
 
 def start_game():
     pygame.init()
     pygame.display.set_mode((800, 600))
     screen = tetris_screen.TetrisScreen()
-    start_screen(screen)
-
-def start_game_old():
-    print("starting")
-    game = world.World(10, 20)
-    keys = controls.Controls()
-    p1 = player.Player(game, keys)
-    screen = renderer.PyGameRenderer(game, p1, 800, 600)
-    clock = pygame.time.Clock()
-    old_keys = keys.snapshot()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                break
-        ticks = clock.tick(60)
-        p1.tick(ticks, keys, old_keys)
-        old_keys = keys.snapshot()
-        screen.draw_tiles()
-        screen.draw_score()
-        pygame.display.flip()
-
+    menu = menu.main_screen.MainScreen()
+    start_screen(menu)
 
 
 def start_screen(screen):
