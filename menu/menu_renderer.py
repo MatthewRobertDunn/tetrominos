@@ -8,9 +8,11 @@ class MenuRenderer:
     def __init__(self, player):
         self.player = player
         self.screen = pygame.display.get_surface()
-        self.font =  pygame.font.Font(os.path.join(constants.FONT_DIR, '8-Bit Madness.ttf'),70)
+        self.font =  pygame.font.Font(os.path.join(constants.FONT_DIR, 'kremlin.ttf'),70)
+        self.background = pygame.image.load(os.path.join(constants.BACKGROUNDS_DIR, 'background.png'))
 
     def draw_menu(self):
+        self.screen.blit(self.background, (0,30))
         text = self.render_text(self.player.Text, True)
         self.screen.blit(text, (50, 0))
 

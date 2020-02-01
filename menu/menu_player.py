@@ -2,7 +2,7 @@ from types import SimpleNamespace as MenuItem
 from . import menu_sounds
 class MenuPlayer:
     def __init__(self):
-        self.Text = "Tetrominos!"
+        self.Text = "Tetrominos"
         self.menu_items = [MenuItem(Text="Start",Selected=True), 
                            MenuItem(Text="About",Selected=False),
                            MenuItem(Text="Quit",Selected=False)]

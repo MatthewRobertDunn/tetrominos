@@ -5,7 +5,7 @@ import os
 class MenuSounds:
     def __init__(self):
         self.menu_select_sample = pygame.mixer.Sound(os.path.join(constants.SOUND_DIR, 'menu_select.ogg'))
-        pygame.mixer.music.load(os.path.join(constants.MUSIC_DIR, 'tetrominos.ogg'))
+        pygame.mixer.music.load(os.path.join(constants.MUSIC_DIR, 'from russia with love.ogg'))
 
     def menu_select(self):
         chan = pygame.mixer.find_channel(True)
