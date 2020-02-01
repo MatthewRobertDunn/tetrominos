@@ -8,8 +8,10 @@ import menu.main_screen
 import sys
 
 def start_game():
+    pygame.mixer.pre_init(44100, -16, 2, 512)
+    pygame.mixer.init() #don't change the order of these or odd sound issues happen
+    pygame.mixer.set_num_channels(8)
     pygame.init()
-    pygame.mixer.init()
     pygame.display.set_mode((800, 600))
     screen = tetris_screen.TetrisScreen()
     menu_screen = menu.main_screen.MainScreen()

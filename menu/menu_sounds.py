@@ -8,7 +8,9 @@ class MenuSounds:
         pygame.mixer.music.load(os.path.join(constants.MUSIC_DIR, 'tetrominos.ogg'))
 
     def menu_select(self):
-        self.menu_select_sample.play()
+        chan = pygame.mixer.find_channel(True)
+        chan.queue(self.menu_select_sample)
+        
 
     def menu_music(self):
         pygame.mixer.music.set_volume(0.5)
