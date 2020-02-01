@@ -13,12 +13,12 @@ class MenuRenderer:
 
     def draw_menu(self):
         self.screen.blit(self.background, (0,30))
-        text = self.render_text(self.player.Text, True)
+        text = self.render_text(self.player.text, True)
         self.screen.blit(text, (50, 0))
 
         height = 100
         for item in self.player.menu_items:
-            text = self.render_text(item.Text, item.Selected)
+            text = self.render_text(item.text, item.selected)
             self.screen.blit(text, (50, height))
             height += self.screen.get_height() / 10.0
 

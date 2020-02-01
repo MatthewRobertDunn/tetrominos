@@ -17,6 +17,7 @@ class Controls:
         c.move_right = self.move_right(keys)
         c.menu_up = self.menu_up(keys)
         c.menu_down = self.menu_down(keys)
+        c.menu_select = self.menu_select(keys)
         return c
 
     

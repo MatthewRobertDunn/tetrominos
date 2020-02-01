@@ -1,21 +1,21 @@
 import pygame
 import tetromino
 import world
-
+import tiles
 
 class PyGameRenderer:
     def __init__(self, game, player):
         self.screen =  pygame.display.get_surface()
         self.game = game
         self.player = player
-        self.tile_size = 16
-        self.grid_offset = [self.screen.get_width() / 2 - 100, 128]
+        self.tile_size = 32
+        self.grid_offset = [self.screen.get_width() / 2 - 6*self.tile_size, self.tile_size]
 
     def draw_score(self):
         font = pygame.font.SysFont("monospace", 20)
         text = font.render(
             f'Super Tetrominos. Game {"Over" if self.player.game_over else "Active"}. Score: {self.player.score}'\
-            , True, (255, 255, 255))
+            , False, (255, 255, 255))
         self.screen.blit(text, (0, 0))
 
     def draw_tiles(self):
@@ -34,9 +34,11 @@ class PyGameRenderer:
             return
 
         if cell == 'E':
-            color = (255, 0, 0)
+            color = tiles.BORDER_TILE
         elif cell == 'S':
-            color = (0, 0, 255)
+            color = tiles.BORDER_TILE
         else:
             color = cell.color
-        pygame.draw.rect(self.screen, color, (screenX, screenY, self.tile_size, self.tile_size), 3)
+       
+        self.screen.blit(color, (screenX, screenY))
+        #pygame.draw.rect(self.screen, color, (screenX, screenY, self.tile_size, self.tile_size), 3)

@@ -12,13 +12,27 @@ def start_game():
     pygame.mixer.init() #don't change the order of these or odd sound issues happen
     pygame.mixer.set_num_channels(8)
     pygame.init()
-    pygame.display.set_mode((800, 600))
-    screen = tetris_screen.TetrisScreen()
+    pygame.display.set_mode((1024, 768))
     menu_screen = menu.main_screen.MainScreen()
     start_screen(menu_screen)
 
 
+
+def start_new_game():
+     _change_screen(tetris_screen.TetrisScreen())
+
+
+_next_screen = None
+def _change_screen(screen):
+    global _next_screen 
+    _next_screen = screen
+
+def quit():
+    pygame.quit()
+    sys.exit()
+
 def start_screen(screen):
+    global _next_screen 
     print("starting")
     clock = pygame.time.Clock()
     key_reader = controls.Controls()
@@ -30,6 +44,9 @@ def start_screen(screen):
                 sys.exit()
                 break
         ticks = clock.tick(60)
+        if _next_screen is not None:
+            screen = _next_screen
+            _next_screen = None
         keys = key_reader.read()
         screen.tick(ticks, keys, old_keys)
         old_keys = keys
