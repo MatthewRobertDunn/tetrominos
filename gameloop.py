@@ -5,6 +5,7 @@ import controls
 import pygame
 import tetris_screen
 import menu.main_screen
+import sys
 
 def start_game():
     pygame.init()
@@ -22,7 +23,9 @@ def start_screen(screen):
     old_keys = key_reader.read()
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:   
+                pygame.quit()
+                sys.exit()
                 break
         ticks = clock.tick(60)
         keys = key_reader.read()

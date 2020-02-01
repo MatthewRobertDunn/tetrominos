@@ -16,13 +16,14 @@ class MenuPlayer:
 
     def tick(self, ticks, controls, old_controls):
         if controls.menu_down and not old_controls.menu_down:
+            self.sounds.menu_select()
             self.menu_items[self.selected_index].Selected = False
             self.selected_index = (self.selected_index + 1) % len(self.menu_items)
             self.menu_items[self.selected_index].Selected = True
-            self.sounds.menu_select()
+            
 
         if controls.menu_up and not old_controls.menu_up:
+            self.sounds.menu_select()
             self.menu_items[self.selected_index].Selected = False
             self.selected_index = (self.selected_index - 1) % len(self.menu_items)
             self.menu_items[self.selected_index].Selected = True
-            self.sounds.menu_select()
