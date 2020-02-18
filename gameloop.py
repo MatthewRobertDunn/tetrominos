@@ -47,6 +47,7 @@ def start_screen(screen):
         if _next_screen is not None:
             screen = _next_screen
             _next_screen = None
+            pygame.display.get_surface().fill((0,0,0))
         keys = key_reader.read()
         screen.tick(ticks, keys, old_keys)
         old_keys = keys

@@ -1,7 +1,7 @@
 import tetromino
 import tetrominos
 import random
-
+import player_sounds
 class Player:
 
     def __init__(self, game):
@@ -15,6 +15,8 @@ class Player:
         self.advance_held = 0
         self.move_speed = 60
         self.last_move = 0
+        self.cleared_lines = 0
+        self.sounds = player_sounds.PlayerSounds()
 
     def tick(self, ticks, controls, old_controls):
         if self.game_over:
@@ -51,10 +53,11 @@ class Player:
             tetromino.rotate_clockwise()
 
         self.game.place_piece(tetromino)
-
+        self.cleared_lines = 0
         if tetromino.is_frozen:
-            cleared_lines = self.game.clear_lines()
-            self.score += 2**cleared_lines
+            self.cleared_lines =  self.game.clear_lines()
+            self.score += 2**self.cleared_lines
+            self.sounds.freeze()
 
     # Returns the tetromino under control by the player
     def _get_tetromino(self):

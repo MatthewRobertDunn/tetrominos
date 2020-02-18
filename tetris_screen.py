@@ -12,5 +12,4 @@ class TetrisScreen:
         self.p1.tick(ticks,controls,old_controls)
 
     def draw(self):
-        self.render.draw_tiles()
-        self.render.draw_score()
+        self.render.draw()
